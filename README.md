@@ -1,242 +1,191 @@
-# memory_game_pokemon
+# ⚡ Memory Game Pokémon
 
-A new Flutter project.
-
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
-
-# 📱 Flutter Wireless Debugging (Android)
-
-> **Objetivo**: Padronizar o processo de execução e depuração de aplicações Flutter em dispositivos Android físicos **sem uso de cabo USB**, utilizando ADB via Wi‑Fi.
+Um jogo da memória inspirado no universo Pokémon, desenvolvido em **Flutter**, com sistema de progressão de níveis, ranking de treinadores, persistência de dados e efeitos sonoros.
 
 ---
 
-## 📌 Escopo
+## 🎮 Sobre o projeto
 
-Este procedimento aplica-se a todos os desenvolvedores que utilizam Flutter em ambiente Android (11+), visando:
+O **Memory Game Pokémon** é um jogo da memória onde o jogador assume o papel de um **Treinador Pokémon**. Na tela inicial, o usuário informa seu nome e pode acompanhar o **ranking dos melhores treinadores em cada nível** antes de iniciar uma nova partida.
 
-* Aumentar produtividade (hot reload sem cabo)
-* Reduzir dependência de conexão física
-* Padronizar setup entre times
+Ao longo do jogo, o treinador evolui conforme supera os desafios:
 
----
+* 🐣 **Pichu** — Nível Fácil
+* ⚡ **Pikachu** — Nível Médio
+* 🌩️ **Raichu** — Nível Difícil
 
-## 🧾 Pré-requisitos
-
-* Android **11 ou superior**
-* Dispositivo e computador na **mesma rede Wi‑Fi**
-* ADB instalado (Android SDK / platform-tools)
-* Projeto Flutter funcional
+Cada evolução aumenta a quantidade de cartas e o nível de dificuldade, exigindo mais memória, concentração e agilidade para completar a partida.
 
 ---
 
-## 🔧 Configuração no Dispositivo
+## ✨ Funcionalidades
 
-1. Acessar:
-
-   ```
-   Configurações → Opções do desenvolvedor
-   ```
-
-2. Ativar:
-
-   * Depuração USB
-   * Wireless debugging
-
-3. Selecionar:
-
-   ```
-   Wireless debugging → Emparelhar dispositivo com código
-   ```
+* 🧑 Cadastro do nome do treinador
+* 🏆 Ranking individual para cada nível
+* 🎴 Embaralhamento aleatório das cartas
+* ⚡ Sistema de comparação de pares
+* 📈 Progressão automática entre os níveis
+* 🐣 Evolução Pichu → Pikachu → Raichu
+* 💾 Persistência de dados utilizando **SQLite**
+* 🔊 Efeitos sonoros durante a partida
+* 🔄 Reinício da partida
+* 📱 Interface responsiva para Android e iOS
+* 🎨 Visual inspirado no universo Pokémon
 
 ---
 
-## 🔗 Pareamento do Dispositivo (ADB Pair)
+## 🕹️ Níveis do jogo
 
-No dispositivo será exibido:
+| Nível      | Pokémon | Dificuldade             |
+| ---------- | ------- | ----------------------- |
+| 🐣 Pichu   | Fácil   | Ideal para iniciantes   |
+| ⚡ Pikachu  | Médio   | Desafio intermediário   |
+| 🌩️ Raichu | Difícil | Teste máximo de memória |
 
-* Endereço IP + porta de pareamento
-* Código de pareamento (6 dígitos)
+Ao concluir um nível, o próximo é desbloqueado automaticamente, representando a evolução do seu Pokémon.
 
-No terminal do computador:
+---
+
+## 🏆 Sistema de Ranking
+
+Cada nível possui seu próprio ranking de treinadores.
+
+Após concluir uma partida, o resultado é armazenado localmente utilizando **SQLite**, permitindo acompanhar os melhores desempenhos em cada dificuldade.
+
+---
+
+## 💾 Persistência de Dados
+
+O aplicativo utiliza **SQLite** para armazenar informações localmente, como:
+
+* Nome do treinador
+* Ranking por nível
+* Pontuação ou tempo da partida
+
+Dessa forma, os dados permanecem disponíveis mesmo após o fechamento do aplicativo.
+
+---
+
+## 🔊 Experiência do Jogo
+
+Para tornar a experiência mais imersiva, o jogo conta com efeitos sonoros durante as principais ações, como:
+
+* Virar uma carta
+* Encontrar um par correto
+* Finalizar uma partida
+* Evoluir para um novo nível
+
+---
+
+## 📸 Demonstração
+
+Adicione aqui capturas de tela do aplicativo.
+
+### Tela Inicial
+
+* Cadastro do treinador
+* Ranking por nível
+* Início da partida
+
+### Tela do Jogo
+
+* Cartas do jogo
+* Evolução atual
+* Contador da partida
+
+```md
+![Tela Inicial](assets/readme/home.png)
+
+![Jogo](assets/readme/game.png)
+
+![Ranking](assets/readme/ranking.png)
+```
+
+---
+
+## 🚀 Tecnologias Utilizadas
+
+* Flutter
+* Dart
+* SQLite
+* Material Design
+* Audio Players (efeitos sonoros)
+
+---
+
+## ▶️ Como executar
 
 ```bash
-adb pair <IP>:<PORTA>
-```
+git clone https://github.com/Matheus-Pontes/Memory_Game_Pokemon.git
 
-Exemplo:
+cd Memory_Game_Pokemon
 
-```bash
-adb pair 192.168.0.15:37123
-```
+flutter pub get
 
-Ao solicitar:
-
-```
-Enter pairing code:
-```
-
-Inserir o código exibido no dispositivo.
-
----
-
-## 🔌 Conexão com o Dispositivo (ADB Connect)
-
-⚠️ A porta de conexão **é diferente da porta de pareamento**.
-
-No dispositivo, copiar:
-
-```
-IP address & Port
-```
-
-Executar:
-
-```bash
-adb connect <IP>:<PORTA>
-```
-
-Exemplo:
-
-```bash
-adb connect 192.168.0.15:45678
-```
-
----
-
-## 🧪 Validação da Conexão
-
-```bash
-adb devices
-```
-
-Saída esperada:
-
-```
-192.168.0.15:45678    device
-```
-
----
-
-## 🚀 Execução do Projeto Flutter
-
-### Via terminal
-
-```bash
-flutter run
-```
-
-### Via VS Code
-
-1. Selecionar dispositivo no canto inferior
-2. Pressionar `F5`
-
----
-
-## ⚡ Hot Reload
-
-Durante execução:
-
-* `r` → Hot Reload
-* `R` → Hot Restart
-
----
-
-## 🔄 Reconexão
-
-Caso a conexão seja perdida:
-
-```bash
-adb connect <IP>:<PORTA>
-```
-
-> Não é necessário repetir o pareamento (`adb pair`), exceto em casos de perda de autorização.
-
----
-
-## 🛠️ Troubleshooting
-
-### Dispositivo não listado
-
-```bash
-adb kill-server
-adb start-server
-adb connect <IP>:<PORTA>
-```
-
----
-
-### Comando adb não reconhecido
-
-Adicionar ao PATH do sistema:
-
-```
-C:\Users\<usuario>\AppData\Local\Android\Sdk\platform-tools
-```
-
----
-
-### Dispositivo aparece como "offline"
-
-```bash
-adb disconnect
-adb connect <IP>:<PORTA>
-```
-
----
-
-## ⚙️ Automação (Opcional)
-
-Criar script para agilizar execução.
-
-### Windows (.bat)
-
-```bat
-adb connect 192.168.0.15:45678
 flutter run
 ```
 
 ---
 
-## 🧠 Resumo Técnico
+## 🎯 Como Jogar
 
-| Comando     | Função               |
-| ----------- | -------------------- |
-| adb pair    | Autoriza dispositivo |
-| adb connect | Conecta via Wi-Fi    |
-| adb devices | Lista dispositivos   |
-| flutter run | Executa aplicação    |
-
----
-
-## 📎 Observações
-
-* A conexão depende da rede local (Wi-Fi)
-* IP do dispositivo pode mudar (DHCP)
-* Para uso contínuo, recomenda-se IP fixo ou automação
+1. Informe o nome do treinador.
+2. Consulte o ranking do nível desejado.
+3. Inicie a partida.
+4. Encontre todos os pares de cartas.
+5. Complete o desafio para desbloquear o próximo nível.
+6. Alcance o topo do ranking em todas as evoluções.
 
 ---
 
-## ✅ Resultado Esperado
+## 🧠 Conceitos Aplicados
 
-Após configuração:
+Este projeto foi desenvolvido para praticar diversos conceitos do Flutter, entre eles:
 
-* Execução do app Flutter sem cabo USB
-* Hot reload funcional
-* Integração com ferramentas de debug (VS Code / CLI)
+* Gerenciamento de estado
+* Navegação entre telas
+* Widgets personalizados
+* Organização em camadas
+* Persistência de dados com SQLite
+* Manipulação de listas
+* Algoritmo de embaralhamento
+* Reprodução de áudio
+* Responsividade
+* Boas práticas de desenvolvimento
 
 ---
 
-**Versão**: 1.0
-**Responsável**: Matheus Francisco de Pontes
-**Atualização**: 04/2026
+## 🚀 Melhorias Futuras
+
+* 🌐 Ranking online
+* ☁️ Sincronização em nuvem
+* 🎵 Música de fundo configurável
+* ✨ Novas animações
+* 🏅 Sistema de conquistas
+* 👥 Multiplayer local
+* 🎮 Novos níveis inspirados em outras gerações Pokémon
+
+---
+
+## 👨‍💻 Autor
+
+**Matheus Pontes**
+
+Desenvolvedor Full Stack apaixonado por desenvolvimento mobile, interfaces modernas e criação de aplicações utilizando Flutter.
+
+* GitHub: https://github.com/Matheus-Pontes
+* Portfólio: https://matheuspontes.vercel.app/
+
+---
+
+## ⭐ Apoie o Projeto
+
+Se este projeto foi útil ou serviu como inspiração, deixe uma ⭐ no repositório.
+
+Esse pequeno gesto ajuda bastante na divulgação do projeto.
+
+---
+
+## 📄 Licença
+
+Este projeto está licenciado sob a licença **MIT**.
